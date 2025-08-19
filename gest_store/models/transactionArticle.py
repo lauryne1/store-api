@@ -1,6 +1,7 @@
-# models.py
 from django.db import models
 
+from gest_store.models.article import Article
+from gest_store.models.transaction import Transaction
 
 
 
@@ -24,6 +25,4 @@ class TransactionArticle(models.Model):
     @property
     def sous_total(self):
         return self.quantite * self.prix_unitaire
-    
-
     
