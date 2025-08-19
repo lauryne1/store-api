@@ -1,3 +1,6 @@
+from gest_store.serializer.article import ArticleSerializer
+from gest_store.serializer.shop import ShopSerializer
+from gest_store.serializer.utilisateur import UtilisateurSerializer
 from rest_framework import serializers
 from .models import Utilisateur, Categorie, Shop, Article, ShopArticle, Transaction, TransactionArticle
 from django.contrib.auth import get_user_model

@@ -1,5 +1,5 @@
 from gest_store.models.shopArticle import ShopArticle
-from gest_store.serializers import ShopArticleSerializer
+from gest_store.serializer.shopArticle import ShopArticleSerializer
 from rest_framework import viewsets, permissions
 
 

@@ -1,5 +1,5 @@
 from gest_store.models.categorie import Categorie
-from gest_store.serializers import CategorieSerializer
+from gest_store.serializer.categorie import CategorieSerializer
 from rest_framework import viewsets, permissions
 
 

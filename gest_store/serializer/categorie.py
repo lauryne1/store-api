@@ -1,6 +1,5 @@
 
-
-from gest_store import serializers
+from rest_framework import serializers
 from gest_store.models.categorie import Categorie
 
 
