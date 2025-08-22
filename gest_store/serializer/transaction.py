@@ -1,4 +1,5 @@
-from gest_store import serializers
+from rest_framework import serializers
+from gest_store.serializer.transactionArticle import TransactionArticleSerializer
 from gest_store.models import TransactionArticle
 from gest_store.models.article import Article
 from gest_store.models.transaction import Transaction
@@ -6,11 +7,12 @@ from gest_store.models.utilisateur import Utilisateur
 from gest_store.serializer.article import ArticleSerializer
 from gest_store.serializer.shop import ShopSerializer
 from gest_store.serializer.utilisateur import UtilisateurSerializer
+from gest_store.models.shop import Shop
 
 class TransactionSerializer(serializers.ModelSerializer):
     client = UtilisateurSerializer(read_only=True)
     shop = ShopSerializer(read_only=True)
-    articles = serializers.TransactionArticleSerializer(many=True, read_only=True)
+    articles = TransactionArticleSerializer(many=True, read_only=True)
     client_id = serializers.PrimaryKeyRelatedField(
         queryset=Utilisateur.objects.all(), source='client', write_only=True
     )
