@@ -4,9 +4,12 @@ from rest_framework import status
 from django.shortcuts import get_object_or_404
 from store.models.products import Product
 from store.serializers.products import ProductSerializer
+from rest_framework.permissions import  IsAdminUser
+
 
 
 class ProductListCreateAPIView(APIView):
+    permission_classes = [IsAdminUser] 
     def get(self, request):
         products = Product.objects.all()
         serializer = ProductSerializer(products, many=True)

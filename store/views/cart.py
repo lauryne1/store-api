@@ -4,9 +4,13 @@ from rest_framework import status
 from django.shortcuts import get_object_or_404
 from store.models.cart import Cart
 from store.serializers.cart import CartSerializer
+from rest_framework.permissions import IsAuthenticated
+
 
 
 class CartListCreateAPIView(APIView):
+    permission_classes = [IsAuthenticated]  
+
     def get(self, request):
         carts = Cart.objects.all()
         serializer = CartSerializer(carts, many=True)

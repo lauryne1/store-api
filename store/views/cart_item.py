@@ -4,6 +4,10 @@ from rest_framework import status
 from django.shortcuts import get_object_or_404
 from store.models.cart_item import CartItem
 from store.serializers.cart_item import CartItemSerializer
+from store.permissions import IsOwner
+from rest_framework.permissions import IsAuthenticated
+
+
 
 
 class CartItemListCreateAPIView(APIView):
@@ -21,6 +25,8 @@ class CartItemListCreateAPIView(APIView):
 
 
 class CartItemDetailAPIView(APIView):
+    permission_classes = [IsAuthenticated] # IsOwner
+
     def get(self, request, pk):
         item = get_object_or_404(CartItem, pk=pk)
         serializer = CartItemSerializer(item)
