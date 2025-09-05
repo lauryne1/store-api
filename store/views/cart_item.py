@@ -19,16 +19,17 @@ class CartItemListCreateAPIView(APIView):
     def post(self, request):
         serializer = CartItemSerializer(data=request.data)
         if serializer.is_valid():
-            serializer.save()
+            serializer.save(user=request.user)
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
 class CartItemDetailAPIView(APIView):
-    permission_classes = [IsAuthenticated] # IsOwner
-
+    permission_classes = [IsAuthenticated,IsOwner] 
     def get(self, request, pk):
         item = get_object_or_404(CartItem, pk=pk)
+        self.check_object_permissions(request, item)  
+
         serializer = CartItemSerializer(item)
         return Response(serializer.data)
 
